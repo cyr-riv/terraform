@@ -1,0 +1,11 @@
+#cloud-config
+ssh_authorized_keys:
+- ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDDzcSHpBozHP8/sjk9SXBALckupBkje50edFLVcrJCjkbhLsL38Ay7u0+sptm28dYKppMXwMgRVxCsl4dUQRr4lpmjO0LF5Kg5U2fhhAGYD9tj830soKhGYq/Eb3Vxs0KLz+u8WyZTeketa8PoIEwH7vy0A+A0CO8pWWZNNL+/aMIzPNyfTx7/S/1whb7A6lS3HhBbI2vsBz8Gf6iKKuEtBo0eqKuKCLukYgdG26yigFv7FEeLW5oNXjHxKS/+I6HSmk+aid3UtxvVq9xfjdRr5hW9CVcaqVehLRU6v0j4gEG3oJZjyS6TsosB27Vvmv47Xs/horwAzMU6uoxKwiVzFXYeb1GW1AoqdcpLjWGnRMcthi+9H2Fp/9+ahkpWHbDxSyr3hWPPRmetHbRAt59n9tCUqBaGDjeJ4u363mxhQ2LhF3Pdixfmag+Sm9tyjnVT+hLt5kruXcvDr0OM8tUwHHDXniBaQncvbkrVJTUZmkh+akaiR+7JB092ZwC7DtE= cyrille.riviere.pro@gmail.com
+runcmd:
+- apt-get update
+- apt-get install -y apt-transport-https ca-certificates curl software-properties-common
+- curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+- add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+- apt-get update
+- apt-get -y install docker-ce=5:18.09.0~3-0~ubuntu-bionic
+- usermod -G docker -a ubuntu
